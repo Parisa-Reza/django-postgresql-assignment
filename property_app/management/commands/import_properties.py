@@ -57,7 +57,7 @@ class Command(BaseCommand):
             property_obj, created = Property.objects.get_or_create(
                 title=title,
                 defaults={
-                    'location': row_location,  #  links to the dynamic country model row!
+                    'location': row_location,  #  links to the dynamic country model row
                     'slug': slugify(title),
                     'description': row.get('description', ''),
                     'property_type': row.get('property_type', 'Vacation Rental'),
@@ -73,5 +73,5 @@ class Command(BaseCommand):
 
             if created:
                 counter += 1
-
-        self.stdout.write(self.style.SUCCESS(f"Successfully processed CSV. Ingested {counter} global entries!"))
+        
+        self.stdout.write(self.style.SUCCESS(f"Successfully processed CSV. Ingested {counter} global entries"))
