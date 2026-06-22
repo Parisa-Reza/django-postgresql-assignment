@@ -44,18 +44,38 @@
         <p style="text-align: justify; line-height: 1.6;">{{ property.description }}</p>
 
         <hr class="my-4">
-        <div class="card  mb-3">
+        <!-- <div class="card  mb-3">
             <div class="card-body">
                 <h5 class="card-title text-primary">Location to Property Distance</h5>
                 {% if distance_from_hub is not None %}
                 <p class="card-text fs-6">
-                    This rental listing is located exactly <strong>{{ distance_from_hub }} km</strong> away from the
-                    central <strong>{{ property.location.city }} hub coordinate marker</strong>.
+                    This rental property located exactly <strong>{{ distance_from_hub }} km</strong> away from the
+                    <strong>{{ property.location.city }} city coordinate </strong>.
                 </p>
                 {% else %}
                 <p class="card-text text-muted small">
                     Unable to calculate proximity metrics. Ensure both property and location coordinates are
                     correctly
+                    mapped.
+                </p>
+                {% endif %}
+            </div>
+        </div> -->
+        <div class="card mb-3">
+            <div class="card-body">
+                <h5 class="card-title text-primary">Geospatial Proximity Hub Audit</h5>
+                {% if distance_from_hub is not None %}
+                <!-- <p class="card-text fs-6">
+                    This rental listing is located exactly <strong>{{ distance_from_hub }} meters</strong> away from the
+                    central <strong>{{ property.location.city }} hub coordinate marker</strong>.
+                </p> -->
+                <p class="card-text fs-6">
+                    This rental listing is located exactly <strong>{{ distance_from_hub|floatformat:4 }} meters</strong>
+                    away from the central hub.
+                </p>
+                {% else %}
+                <p class="card-text text-muted small">
+                    Unable to calculate proximity metrics. Ensure both property and location coordinates are correctly
                     mapped.
                 </p>
                 {% endif %}
