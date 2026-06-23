@@ -1,8 +1,5 @@
 # Rental Owner
 
-> A semantic property search platform built with Django, PostgreSQL, PGVector, and Sentence Transformers enabling natural language location search with lightning-fast HNSW vector indexing.
-
----
 
 ##  Quick Preview
 
@@ -12,7 +9,7 @@
 
 ---
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 | Layer | Technology |
 |---|---|
@@ -67,13 +64,13 @@
 ###  Clone the Repository
 
 ```bash
-git clone <your-repository-url>
-cd my_project
+git clone https://github.com/Parisa-Reza/Owner-Rental-Parisa-Reza
+cd Owner-Rental-Parisa-Reza
 ```
 
 ---
 
-### Step 2 — Configure Environment Assets
+### Configure Environment Assets
 
 Create your local environment config file, or verify your rental data CSV is present:
 
@@ -87,7 +84,7 @@ ls rentals.csv
 
 ---
 
-### Step 3 — Build and Start Docker Containers
+### Build and Start Docker Containers
 
 Build the environment and install all dependencies including AI/ML libraries (`pgvector`, `sentence-transformers`, `numpy`):
 
@@ -95,11 +92,11 @@ Build the environment and install all dependencies including AI/ML libraries (`p
 docker compose up -d --build
 ```
 
-> ⚠️ **First-run note:** The initial build may take **5–10 minutes** — Docker downloads large ML models and libraries. Do **not** interrupt this process.
+> ⚠️ **First-run note:** The initial build may take **15–20 minutes** — Docker downloads large ML models and libraries. Do **not** interrupt this process.
 
 ---
 
-### Step 4 — Apply Database Migrations
+### Apply Database Migrations
 
 Prepare the PostgreSQL database with spatial extensions and create all required tables:
 
@@ -110,7 +107,7 @@ docker compose exec web python manage.py migrate
 
 ---
 
-### Step 5 — Initialize the HNSW Vector Index
+### Initialize the HNSW Vector Index
 
 Open the Django shell:
 
@@ -134,11 +131,10 @@ with connection.cursor() as cursor:
 exit()
 ```
 
-> 💡 **Why HNSW?** Hierarchical Navigable Small World indexing enables sub-millisecond approximate nearest-neighbour vector searches — even across millions of embeddings.
 
 ---
 
-### Step 6 — Import Data & Generate AI Embeddings
+###  Import Data & Generate AI Embeddings
 
 Process your CSV, generate semantic vector embeddings for all locations, and populate the database:
 
@@ -146,30 +142,23 @@ Process your CSV, generate semantic vector embeddings for all locations, and pop
 docker compose exec web python manage.py import_properties rentals.csv
 ```
 
-This command will:
-1. Parse `rentals.csv` via Pandas
-2. Create `Location` and `Property` records
-3. Generate sentence embeddings for each location name
-4. Store vectors in PGVector for semantic search
 
 ---
 
-### Step 7 — Access the Application
+### Access the Application
 
 Your app is live! Open your browser:
 
 | Interface | URL |
 |---|---|
-| 🏠 Homepage Search | `http://localhost:8000/` |
-| ⚙️ Django Admin Panel | `http://localhost:8000/admin/` |
+| Homepage Search | `http://localhost:8000/` |
+| Django Admin Panel | `http://localhost:8000/admin/` |
 
 ---
 
 ## Future improvement
 
--  **Semantic location search** (understands context, not just keywords)
--  Combined **geo + semantic search** pipeline
--  **Location autocomplete API** powered by semantic search
+- Enhance semantic search
 
 
 
